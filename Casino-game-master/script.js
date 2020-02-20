@@ -100,7 +100,7 @@ $(document).ready(function () {
       dealerNum.text("Dealer's score: " + dealerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "100%" });
 
       if (playerHand === 21) {
-        alert("BLACKJACK MOTHERFUCKER !!!!!!")
+        swal("Yoohoo!", "BLACKJACK MOTHERFUCKER!!!!!!")
       }
     })
   });
@@ -117,11 +117,9 @@ $(document).ready(function () {
       var cards = $("<img>").attr('src', response.cards[0].image)
         .animate({ height: '50%', width: '20%' })
       playerHand = playerHand + cardValue[response.cards[0].code]
-      //score test
-      //var total = $("<p>").text(playerHand)
-      //tRow2.append(total) 
+   
       if (playerHand > 21) {
-        alert('You suck!!!')
+        swal("Get your busted ass outta here!!!")
       }
 
       tRow2.append(cards)
@@ -152,11 +150,8 @@ $(document).ready(function () {
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-          console.log(dealerHand)
-        })
-
-      }
-      else (dealerHand < 17); {
+          
+        })} else (dealerHand < 17); {
         $.ajax({
           url: hit,
           method: "GET"
@@ -167,21 +162,22 @@ $(document).ready(function () {
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-          console.log(dealerHand)
-        })
+        })}
 
-      }
+
+
+
 
       if (dealerHand > playerHand && dealerHand < 22) {
-        alert("dealer wins! You suck ASS!!!!!!")
+        swal("Dealer wins!", "You suck ASS!!!!!!")
       }
       else if (dealerHand > 21) {
-        alert("good job ASSHOLE!!!")
+        swal("good job", "You ASSHOLE!!!")
       }
       else if (dealerHand === playerHand) {
-        alert("TIE! were both FUCKED!!!")
+        swal("TIE!", "We're both FUCKED!!!")
       } else if (playerHand > dealerHand && playerHand < 22) {
-        alert('good job DICK FACE!!!')
+        swal("Good job", "DICK FACE!!!")
       }
       console.log(dealerHand)
       tRow.append(cards)
