@@ -71,7 +71,7 @@ $(document).ready(function () {
 
       //dealer hand
     }).then(function (response) {
-      console.log(response)
+
       var tRow = $("#dealer");
       var card = $("<img>").attr('src', response.cards[0].image)
         .animate({ height: '50%', width: '20%' })
@@ -93,11 +93,11 @@ $(document).ready(function () {
 
       //Update player's card number
       var playersNum = $('#players')
-      playersNum.text("Asshole's score: " + playerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "100%" });
+      playersNum.text("Asshole's score: " + playerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "150%" });
 
       //Update Dealer's card number
       var dealerNum = $('#dealers')
-      dealerNum.text("Dealer's score: " + dealerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "100%" });
+      dealerNum.text("Dealer's score: " + dealerHand).css({ "font-family": "Arial, Helvetica, sans-serif", "font-size": "150%" });
 
       if (playerHand === 21) {
         swal("Yoohoo!", "BLACKJACK MOTHERFUCKER!!!!!!")
@@ -112,16 +112,19 @@ $(document).ready(function () {
       url: hit,
       method: "GET"
     }).then(function (response) {
-      console.log(response)
       var tRow2 = $("#player")
       var cards = $("<img>").attr('src', response.cards[0].image)
         .animate({ height: '50%', width: '20%' })
       playerHand = playerHand + cardValue[response.cards[0].code]
-   
+
+      // if hit card is an A and total hand is over 21, subtract 10.
+      if ((cardValue[response.cards[0].code] == 11) && (playerHand > 21)) {
+        playerHand -= 10;
+      }
+
       if (playerHand > 21) {
         swal("Get your busted ass outta here!!!")
       }
-
       tRow2.append(cards)
     })
 
@@ -150,8 +153,10 @@ $(document).ready(function () {
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-          
-        })} else (dealerHand < 17); {
+
+
+        })
+      } (dealerHand < 17); {
         $.ajax({
           url: hit,
           method: "GET"
@@ -162,11 +167,8 @@ $(document).ready(function () {
 
           dealerHand = dealerHand + cardValue[response.cards[0].code]
           tRow.append(cards)
-        })}
-
-
-
-
+        })
+      }
 
       if (dealerHand > playerHand && dealerHand < 22) {
         swal("Dealer wins!", "You suck ASS!!!!!!")
@@ -179,7 +181,7 @@ $(document).ready(function () {
       } else if (playerHand > dealerHand && playerHand < 22) {
         swal("Good job", "DICK FACE!!!")
       }
-      console.log(dealerHand)
+
       tRow.append(cards)
     })
   });
