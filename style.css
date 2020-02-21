@@ -1,0 +1,53 @@
+
+ body{
+     background-image: url(https://images.unsplash.com/photo-1517232115160-ff93364542dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60);
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: 100vh;
+     width: 100vw;
+
+
+ }
+ .container{
+     background-color: green;
+ }
+ #header{
+     text-align: center;
+ }
+ #function-btn{
+     text-align: center;
+ }
+ #hype-2{
+     text-align: center;
+ }
+ #bj-table{
+     background-image: url(https://cdn2.vectorstock.com/i/1000x1000/07/91/blackjack-table-vector-6320791.jpg);
+ }
+
+#h1{
+    color:whitesmoke;
+
+    
+}
+#h2{
+    color: whitesmoke;
+}
+#btn1{
+    margin-left: 35px;
+  
+}
+#desc1{
+    margin-left: 35px;
+    color: whitesmoke;
+    
+ 
+}
+#hype1{
+    margin-left: 35px;
+    color: whitesmoke;
+    
+    
+}
+p{
+    font-weight: bolder;
+}
